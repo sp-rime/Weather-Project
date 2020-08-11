@@ -12,12 +12,14 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+const { config } = require('./config.js')
+
 app.post("/", function(req, res) {
 
   const query = req.body.cityname;
   const unit = req.body.unitname;
-
-  const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=" + unit + "&appid=9d03bcdc5218cb408358921d6a50e88b";
+  const myKey = config.appid;
+  const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=" + unit + "&appid="+myKey;
 
   https.get(url, function(res2) {
 
